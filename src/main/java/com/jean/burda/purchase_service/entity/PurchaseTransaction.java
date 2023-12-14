@@ -1,13 +1,12 @@
 package com.jean.burda.purchase_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 
 
 @Entity
@@ -17,8 +16,15 @@ public class PurchaseTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Size(max = 50) // Enforces max length of 50 characters for description
+    @Column(length = 50)
     private String description;
+
+    @Column
     private LocalDate transactionDate;
+
+    @Column
     private BigDecimal purchaseAmount;
 
 
